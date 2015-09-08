@@ -10,24 +10,21 @@ class Hand
     @cards << deck.cards.shift
   end
 
-  def get_score
-    score
-    @score
-  end
+  # def get_score
+  #   score
+  #   @score
+  # end
 
   def score
     @score = 0
     @cards.each do |card|
         if card.card == "Туз"
-          if @score + card.value <= 21
-            @score += card.value
-          else
-            @score += 1
-          end
+          @score += card_value(card.value)
         else
           @score += card.value
         end
     end
+    @score
   end
 
   def count
@@ -38,5 +35,16 @@ class Hand
     @cards.each_with_index do |card, index|
       puts "#{index}. #{card.card}#{card.suit}"
     end
+  end
+
+  private
+
+  def card_value(value)
+    if @score + value <= 21
+      val = value
+    else
+      val = 1
+    end
+    return val
   end
 end

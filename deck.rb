@@ -7,16 +7,19 @@ class Deck
     @cards = init
   end
 
+  private
+
   def init
     @cards = []
+    array = *(1..10)
+    array = array | Array(["Валет", "Дама", "Король", "Туз"])
+
     ["♥", "♦", "♣", "♠"].each do |suit|
-        (2..10).each do |card|
-            cards << Card.new(suit, card)
-        end
-        ["Валет", "Дама", "Король", "Туз"].each do |card|
+        array.each do |card|
             cards << Card.new(suit, card)
         end
     end
+
     @cards.shuffle
   end
 end

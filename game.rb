@@ -25,7 +25,7 @@ class Game
             dealer.hand.hit(deck)
         }
 
-        if player.hand.get_score == 21 ||  dealer.hand.get_score == 21
+        if player.hand.score == 21 ||  dealer.hand.score == 21
         else
             loop do
                 skip = false
@@ -33,14 +33,14 @@ class Game
                 puts "Ваши карты:"
                 player.hand.show_cards
                 print "Ваши очки: "
-                puts player.hand.get_score
+                puts player.hand.score
 
                 break if player.hand.count == 3
 
                 print "\n1. Пропустить ход\n2. Добавить карту\n3. Открыть карты\n"
                 var = gets.chomp.to_i
 
-                break if var == 3
+
 
                 case var
                     when 1
@@ -54,16 +54,18 @@ class Game
                         skip = true
                 end
 
-                dealer.hand.hit(deck) if dealer.hand.get_score <= 18 && !skip
+                dealer.hand.hit(deck) if dealer.hand.score <= 18 && !skip
+
+                break if var == 3
             end
         end
             puts "Карты диллера:"
             dealer.hand .show_cards
             print "Очки диллера: "
-            puts dealer.hand.get_score
+            puts dealer.hand.score
 
-            player_score = player.hand.get_score
-            dealer_score = dealer.hand.get_score
+            player_score = player.hand.score
+            dealer_score = dealer.hand.score
 
             if player_score > 21
                 loose = true

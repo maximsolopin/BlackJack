@@ -1,5 +1,5 @@
 class Hand
-  attr_reader :cards, :score
+  attr_reader :cards
 
   def initialize
     @cards = []
@@ -10,20 +10,9 @@ class Hand
     @cards << deck.cards.shift
   end
 
-  # def get_score
-  #   score
-  #   @score
-  # end
-
   def score
     @score = 0
-    @cards.each do |card|
-        if card.card == "Туз"
-          @score += card_value(card.value)
-        else
-          @score += card.value
-        end
-    end
+    scoring_cards
     @score
   end
 
@@ -39,12 +28,22 @@ class Hand
 
   private
 
-  def card_value(value)
+  def ace_value(value)
     if @score + value <= 21
       val = value
     else
       val = 1
     end
     return val
+  end
+
+  def scoring_cards
+    @cards.each do |card|
+      if card.card == "Туз"
+        @score += ace_value(card.value)
+      else
+        @score += card.value
+      end
+    end
   end
 end

@@ -11,9 +11,7 @@ class Hand
   end
 
   def score
-    @score = 0
-    scoring_cards
-    @score
+    @score = scoring_cards
   end
 
   def count
@@ -34,16 +32,18 @@ class Hand
     else
       val = 1
     end
-    return val
+    val
   end
 
   def scoring_cards
+    score = 0
     @cards.each do |card|
       if card.card == "Туз"
-        @score += ace_value(card.value)
+        score += ace_value(card.value)
       else
-        @score += card.value
+        score += card.value
       end
     end
+    score
   end
 end

@@ -1,4 +1,4 @@
-require_relative "card"
+require_relative 'card'
 
 class Deck
   attr_reader :cards
@@ -11,12 +11,12 @@ class Deck
 
   def init
     @cards = []
-    array = (2..10).to_a | ["Валет", "Дама", "Король", "Туз"]
+    array = (2..10).to_a | %w(Валет Дама Король Туз)
 
-    ["♥", "♦", "♣", "♠"].each do |suit|
-        array.each do |card|
-            cards << Card.new(suit, card)
-        end
+    ['♥', '♦', '♣', '♠'].each do |suit|
+      array.each do |card|
+        cards << Card.new(suit, card)
+      end
     end
 
     @cards.shuffle

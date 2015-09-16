@@ -11,7 +11,7 @@ class Hand
   end
 
   def score
-    @score = scoring_cards
+    scoring_cards
   end
 
   def count
@@ -20,15 +20,15 @@ class Hand
 
   def show_cards
     @cards.each_with_index do |card, index|
-      puts "#{index}. #{card.card}#{card.suit}"
+      puts "#{index + 1}. #{card.card}#{card.suit}"
     end
   end
 
   private
 
-  def ace_value(value)
-    if @score + value <= 21
-      val = value
+  def ace_value(score_local, value_local)
+    if score_local + value_local <= 21
+      val = value_local
     else
       val = 1
     end
@@ -37,9 +37,10 @@ class Hand
 
   def scoring_cards
     score = 0
+
     @cards.each do |card|
-      if card.card == "Туз"
-        score += ace_value(card.value)
+      if card.card == 'Туз'
+        score += ace_value(score, card.value)
       else
         score += card.value
       end

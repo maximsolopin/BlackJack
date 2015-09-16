@@ -1,22 +1,21 @@
 class Card
-
   attr_reader :card, :suit, :value
 
   def initialize(suit, card)
     @suit = suit
     @card = card
-    @value = get_value
+    @value = card_value
   end
 
   def print
-    "#{@card}#{@suit} - #{@value}"
+    puts "#{@card}#{@suit} - #{@value}"
   end
 
   private
 
-  def get_value
-    return 10 if ["Валет", "Дама", "Король"].include?(@card)
-    return 11 if @card == "Туз"
-    return @card
+  def card_value
+    return 10 if %w(Валет Дама Король).include?(@card)
+    return 11 if @card == 'Туз'
+    @card
   end
 end
